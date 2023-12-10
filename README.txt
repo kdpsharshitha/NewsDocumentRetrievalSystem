@@ -18,7 +18,7 @@ Components:
     It generally refers to the ordering of information, it reduces the documents to the informative terms in them
  
 2. Query Processsing:
-    We performed the following:
+    We take the query input from the user by using Streamlit and performed the following:
         - remove all non alphabets regex = [^a-zA-Z], 
         - remove whitespaces
         - convert case to lowercase 
