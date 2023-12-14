@@ -49,7 +49,7 @@ def retrieve_news_documents(name, query):
 # Retrieve news documents
 name, query, similarity_scores = retrieve_news_documents(name, query)
 
-# Display results
+# Display documents that matches search
 if name and query and similarity_scores is not None:
     st.success(f"Hey {name}! Here's what you're looking for:")
     if np.any(similarity_scores > 0):
@@ -68,7 +68,7 @@ if name and query and similarity_scores is not None:
                 st.session_state.relevant_documents.append(docs)
 
             # Display relevant documents
-            st.write("Relevant Documents:", st.session_state.relevant_documents)
+            st.write("Relevant Documents that you selected:", st.session_state.relevant_documents)
 
             recall = list()
             precision = list()
@@ -88,7 +88,19 @@ if name and query and similarity_scores is not None:
             plt.ylabel('Precision')
             plt.title("PRECISION-RECALL CURVE")
             st.pyplot(plt)
-            plt.show()
+            
+            relevance_feedback_scores = np.zeros(len(top_urls))
+            for i, url in enumerate(top_urls):
+                if url in st.session_state.relevant_documents:
+                    relevance_feedback_scores[i] = 1
+            combined_scores = similarity_scores[top_indices] + relevance_feedback_scores
+            updated_indices = np.argsort(combined_scores)[-10:][::-1]
+            updated_top_urls = news.loc[updated_indices, "URL"].tolist()
+
+            # Display documents based on relevance feedback
+            st.subheader("Top 10 news documents based on your Relevance Feedback:")
+            for i, url in enumerate(updated_top_urls, start=0):
+                st.write(f"{i}. {url}")
 
     else:
         st.write("No matches Found!")
