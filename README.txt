@@ -31,10 +31,11 @@ Components:
   
 4. Refining:
    The retrieved list of document information is checked for duplicated and removed if any.
-   Top 10 list of documents are displayed in the browser.
+   Top 10 list of news documents are displayed that matches the search.
 
 5. Capturing Relevance feedback -
-   Relevance feedback is taken from the user and relevant documents are displayed.
+   Relevance feedback is taken from the user and relevant documents selected are displayed.
+   The results are modified based on the relevance feedback from the user.
 
 6. Assessment Components (Precision,Recall,P-R curve) -
     We calculate the Precison , Recall and plot P-R Curve.
