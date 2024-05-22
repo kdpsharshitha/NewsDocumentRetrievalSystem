@@ -1,7 +1,7 @@
 # Project Name: News Document Retreival(Environment)
 
 # Project Drive Link:
-https://github.com/kdpsharshitha/P62-MiniProject-NDRHK
+https://github.com/kdpsharshitha/NewsDocumentRetrievalSystem
 
 # How to run the Project:
     cd code
